@@ -3,7 +3,7 @@ import {GitHub, context} from '@actions/github'
 
 async function run(): Promise<void> {
   try {
-    const octokit = new GitHub(<string> process.env.repo_token)
+    const octokit = new GitHub(core.getInput('repo_token'))
     const { owner, repo } = context.repo;
     const labelName = <string> core.getInput('label_name')
     const issueNumber = context.issue.number

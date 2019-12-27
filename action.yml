@@ -1,10 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Unlabel event'
+description: 'Unlabel certain labels from an issue.'
+author: 'steffektif'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  label_name:
+    description: 'The name of the label which should be removed.'
+    required: true
+  repo_token:
+    description: 'Auth token to call the GitHub REST API'
+    required: true
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'index.js'

@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
 import {GitHub, context} from '@actions/github'
 
 async function run(): Promise<void> {

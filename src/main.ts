@@ -3,16 +3,16 @@ import {GitHub, context} from '@actions/github'
 
 async function run(): Promise<void> {
   try {
-    const github = new GitHub(process.env.repo_token)
+    const octokit = new GitHub(<string> process.env.repo_token)
     const { owner, repo } = context.repo;
-    const labelName = core.getInput('labelName')
+    const labelName = <string> core.getInput('labelName')
     const issueNumber = context.issue.number
 
-    await github.issues.removeLabel({
-      repo,
-      owner,
-      issueNumber,
-      labelName
+    octokit.issues.removeLabel({
+      issue_number: issueNumber,
+      name: labelName,
+      owner: owner,
+      repo: repo
     })
 
   } catch (error) {

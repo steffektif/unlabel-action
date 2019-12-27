@@ -1,16 +1,21 @@
 import * as core from '@actions/core'
 import {wait} from './wait'
+import {GitHub, context} from '@actions/github'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    const github = new GitHub(process.env.repo_token)
+    const { owner, repo } = context.repo;
+    const labelName = core.getInput('labelName')
+    const issueNumber = context.issue.number
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    await github.issues.removeLabel({
+      repo,
+      owner,
+      issueNumber,
+      labelName
+    })
 
-    core.setOutput('time', new Date().toTimeString())
   } catch (error) {
     core.setFailed(error.message)
   }

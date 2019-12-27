@@ -5,7 +5,7 @@ async function run(): Promise<void> {
   try {
     const octokit = new GitHub(<string> process.env.repo_token)
     const { owner, repo } = context.repo;
-    const labelName = <string> core.getInput('labelName')
+    const labelName = <string> core.getInput('label_name')
     const issueNumber = context.issue.number
 
     octokit.issues.removeLabel({

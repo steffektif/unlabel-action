@@ -20,7 +20,7 @@ In order to release do the following:
 ## Example usage
 
 ```yml
-uses: steffektif/unlabel-action@v3
+uses: signavio/unlabel-action@v3
 with:
   label_name: 'In progress'
   repo_token: ${{ secrets.GITHUB_TOKEN }}
